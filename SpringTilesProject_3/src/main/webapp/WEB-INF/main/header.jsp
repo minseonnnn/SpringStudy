@@ -58,7 +58,7 @@
                 <!-- Logo Area Start -->
                 <div class="col-12">
                     <div class="logo_area text-center">
-                        <a href="index.html" class="yummy-logo">Recipe & Food</a>
+                        <a href="../main/main.do" class="yummy-logo">Recipe & Food</a>
                     </div>
                 </div>
             </div>
@@ -71,19 +71,25 @@
                         <div class="collapse navbar-collapse justify-content-center" id="yummyfood-nav">
                             <ul class="navbar-nav" id="yummy-nav">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="../main/main.do">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MEMBER</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="index.html">회원가입</a>
-                                        <a class="dropdown-item" href="archive.html">아이디 찾기</a>
-                                        <a class="dropdown-item" href="single.html">비밀번호 찾기</a>
+                                        <a class="dropdown-item" href="index.html">sign up</a>
+                                        <a class="dropdown-item" href="archive.html">find id</a>
+                                        <a class="dropdown-item" href="single.html">find password</a>
                                         
                                     </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Features</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RECIPE</a>
+                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                        <a class="dropdown-item" href="../recipe/list.do">recipe</a>
+                                        <a class="dropdown-item" href="../recipe/chef_list.do">chef</a>
+                                        <a class="dropdown-item" href="../recipe/make.do">cooking</a>
+                                        
+                                    </div>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Categories</a>
