@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,21 +14,21 @@
     <title>SpringLastProject</title>
     <!-- Favicon -->
     <link rel="icon" href="../img/core-img/favicon.ico">
-
     <!-- Core Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-
     <!-- Responsive CSS -->
     <link href="../css/responsive/responsive.css" rel="stylesheet">
-<script src="https://unpkg.com/vue@3"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- VueJS -->
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
     <!-- Preloader Start -->
-    <!-- <div id="preloader">
+    <div id="preloader">
         <div class="yummy-load"></div>
-    </div> -->
+    </div>
+
     <!-- Background Pattern Swither -->
     <div id="pattern-switcher">
         Bg Pattern
@@ -60,3 +60,4 @@
     <!-- Active JS -->
     <script src="../js/active.js"></script>
 </body>
+    

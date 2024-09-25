@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio">
+<!-- ****** Instagram Area Start ****** -->
+    <div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio">
 
         <!-- Instagram Item -->
         <div class="instagram_gallery_item">
@@ -120,8 +121,6 @@
                 </div>
             </div>
         </div>
-        <!-- ****** Instagram Area Start ****** -->
-    
 
         <!-- Instagram Item -->
         <div class="instagram_gallery_item">
@@ -138,7 +137,8 @@
                 </div>
             </div>
         </div>
-        <div class="social_icon_area clearfix">
+      </div>
+      <div class="social_icon_area clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -218,7 +218,7 @@
                 <div class="col-12">
                     <!-- Copywrite Text -->
                     <div class="copy_right_text text-center">
-                        <p>제작 : 강북쌍용교육센터 <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">D강의장</a></p>
+                        <p>제작 : 강북쌍용교육센터<i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">D강의장</a></p>
                     </div>
                 </div>
             </div>

@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-    <!-- ****** Categories Area Start ****** -->
+ <!-- ****** Categories Area Start ****** -->
     <section class="categories_area clearfix" id="about">
         <div class="container">
             <div class="row">
@@ -579,10 +577,6 @@
         </div>
     </section>
     <!-- ****** Blog Area End ****** -->
-
-    
-
-    </div>
 
 </body>
 </html>
