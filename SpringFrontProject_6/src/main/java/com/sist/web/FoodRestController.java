@@ -48,16 +48,28 @@ public class FoodRestController {
   @GetMapping(value = "food/detail_vue.do", produces = "text/plain;charset=UTF-8")
   // detail.do?fno=1
   // String page , int page 
-  public String food_detail(int fno,int page) throws Exception 
+  public String food_detail(int fno,int page) throws Exception
   {
-	  FoodVO vo=dao.foodDetailData(fno);
-	  ObjectMapper mapper=new ObjectMapper();
-	  Map map=new HashMap();
-	  map.put("vo", vo);
-	  map.put("page", page);
-	  map.put("address", vo.getAddress());
-	  map.put("fno", fno);
-	  String json=mapper.writeValueAsString(map);
-	  return json;
+	   FoodVO vo=dao.foodDetailData(fno);
+	   // 서울 은평구 대조동 
+	   String addr1=vo.getAddress();
+	   addr1=addr1.substring(addr1.indexOf(" ")+1);
+	   String addr2=addr1.trim();
+	   addr2=addr2.substring(0,addr2.indexOf(" "));
+		/*
+		 * String addr3=addr2.trim(); 
+		 * addr3=addr3.substring(0,addr3.indexOf(" "));
+		 */
+	   System.out.println("address:"+addr2.trim());
+	   List<FoodVO> list=dao.foodRearHouseData(addr2);
+	   ObjectMapper mapper=new ObjectMapper();
+	   Map map=new HashMap();
+	   map.put("vo", vo);
+	   map.put("page", page);
+	   map.put("address", vo.getAddress());
+	   map.put("fno", fno);
+	   map.put("list", list);
+	   String json=mapper.writeValueAsString(map);
+	   return json;
   }
 }

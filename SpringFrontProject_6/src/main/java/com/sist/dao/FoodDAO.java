@@ -53,4 +53,18 @@ public class FoodDAO {
     	mapper.hitIncrement(fno);
     	return mapper.foodDetailData(fno);
     }
+    
+    /*
+     *    @Select("SELECT fno,name,poster,rownum "
+				  +"FROM (SELECT fno,name,poster "
+				  +"FROM project_food_house "
+				  +"WHERE address LIKE '%'||#{address)||'%' "
+				  +"ORDER BY hit DESC) "
+				  +"WHERE rownum<=5")
+		  public List<FoodVO> foodRearHouseData(String address);
+     */
+    public List<FoodVO> foodRearHouseData(String address)
+    {
+    	return mapper.foodRearHouseData(address);
+    }
 }
