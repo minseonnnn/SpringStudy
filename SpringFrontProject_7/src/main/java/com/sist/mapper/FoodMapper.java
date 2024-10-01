@@ -29,7 +29,7 @@ public interface FoodMapper {
 	  public FoodVO foodDetailData(int fno);
 	  // 로그인
 	  @Select("SELECT COUNT(*) FROM project_member "
-			  +"WHERE id=${id}")
+			  +"WHERE id=#{id}")
 	  public int memberIdCheck(String id);
 	  
 	  @Select("SELECT id,name,sex,pwd FROM project_member "
