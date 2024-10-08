@@ -14,6 +14,6 @@ public interface CommentMapper {
   public List<CommentVO> commentListData(Map map);
   
   @Select("SELECT CEIL(COUNT(*)/10.0) FROM spring_comment "
-		  +"WHERE rno=${rno}")
-  public int commentTotalPage(int rno);
+		  +"WHERE rno=${rno} AND type=#{type}")
+  public int commentTotalPage(Map map);
 }
