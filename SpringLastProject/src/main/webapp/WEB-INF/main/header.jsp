@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,25 +26,35 @@
                 <div class="col-7 col-sm-6">
                     <div class="signup-search-area d-flex align-items-center justify-content-end">
                         <div class="login_register_area d-flex">
+                          <c:if test="${sessionScope.userId==null }">
                             <div class="login">
-                                <a href="register.html">Sing in</a>
+                                <a href="../member/login.do">로그인</a>
                             </div>
                             <div class="register">
-                                <a href="register.html">Sing up</a>
+                                <a href="../member/join.do">회원가입</a>
                             </div>
+                          </c:if>
+                          <c:if test="${sessionScope.userId!=null }">
+                            <div class="login">
+                                ${sessionScope.userName}(<sec:authorize access="hasRole('ROLE_ADMIN')">관리자</sec:authorize>
+                                  <sec:authorize access="hasRole('ROLE_USER')">일반사용자</sec:authorize>)님 로그인되었습니다&nbsp;&nbsp;
+                                <a href="../member/logout.do">로그아웃</a>
+                            </div>
+                          </c:if>
                         </div>
-                        <!-- Search Button Area -->
-                        <div class="search_button">
+                        
+                        <!-- <div class="search_button">
                             <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                         </div>
-                        <!-- Search Form -->
+                       
                         <div class="search-hidden-form">
                             <form action="#" method="get">
-                                <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
+                                <input type="text" name="search" placeholder="아이디 입력">
+                                <input type="password" name="search" placeholder="비밀번호 입력">
                                 <input type="submit" value="" class="d-none">
                                 <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
                             </form>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -57,7 +69,7 @@
                 <!-- Logo Area Start -->
                 <div class="col-12">
                     <div class="logo_area text-center">
-                        <a href="../main/main.do" class="yummy-logo">Food & Recipe & Goods</a>
+                        <a href="../main/main.do" class="yummy-logo">Food & Recipe & Travel</a>
                     </div>
                 </div>
             </div>
@@ -76,25 +88,26 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
                                         <a class="dropdown-item" href="index.html">회원가입</a>
-                                        <a class="dropdown-item" href="archive.html">아이디 찾기</a>
-                                        <a class="dropdown-item" href="single.html">비밀번호 찾기</a>
+                                        <a class="dropdown-item" href="archive.html">아이디찾기</a>
+                                        <a class="dropdown-item" href="single.html">비밀번호찾기</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">맛집</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="../food/list.do">맛집 목록</a>
-                                        <a class="dropdown-item" href="../food/find.do">맛집 검색</a>
-                                        <a class="dropdown-item" href="single.html">맛집 예약</a>
-                                        <a class="dropdown-item" href="static.html">맛집 추천</a>
+                                        <a class="dropdown-item" href="../food/list.do">맛집목록</a>
+                                        <a class="dropdown-item" href="../food/find.do">맛집검색</a>
+                                        <a class="dropdown-item" href="single.html">맛집예약</a>
+                                        <a class="dropdown-item" href="static.html">맛집추천</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="../recipe/list.do">레시피 목록</a>
-                                        <a class="dropdown-item" href="../recipe/chef.do">쉐프 목록</a>
-                                        <a class="dropdown-item" href="single.html">레시피 만들기</a>
+                                        <a class="dropdown-item" href="../recipe/list.do">레시피목록</a>
+                                        <a class="dropdown-item" href="../recipe/chef.do">쉐프목록</a>
+                                        <a class="dropdown-item" href="single.html">레시피만들기</a>
+                            
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -103,8 +116,8 @@
                                         <a class="dropdown-item" href="../seoul/location.do">명소</a>
                                         <a class="dropdown-item" href="../seoul/nature.do">자연 & 관광</a>
                                         <a class="dropdown-item" href="../seoul/shop.do">쇼핑</a>
-                                        <a class="dropdown-item" href="static.html">여행 코스</a>
-                                        <a class="dropdown-item" href="static.html">실시간 날씨</a>
+                                        <a class="dropdown-item" href="single.html">여행 코스</a>
+                                        <a class="dropdown-item" href="single.html">실시간 날씨</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -116,18 +129,22 @@
                                         <a class="dropdown-item" href="index.html">자유게시판</a>
                                         <a class="dropdown-item" href="archive.html">공지사항</a>
                                         <a class="dropdown-item" href="single.html">1:1채팅</a>
-                                        <a class="dropdown-item" href="static.html">실시간 채팅</a>
+                                        <a class="dropdown-item" href="single.html">실시간 채팅</a>
+                                    
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">빠른 예약</a>
+                                    <a class="nav-link" href="#">빠른예약</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="archive.html">마이페이지</a>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link" href="#">관리자 페이지</a>
-                                </li> -->
+                                <!-- 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">관리자페이지</a>
+                                </li>
+                                -->
+                                
                             </ul>
                         </div>
                     </nav>
