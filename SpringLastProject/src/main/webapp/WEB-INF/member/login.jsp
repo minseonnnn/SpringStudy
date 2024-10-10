@@ -34,13 +34,13 @@
             <form action="../member/login.do" method="post" id="frm">
               <table class="table text-center">
                 <tr>
-                  <th class="text-center" width=20%>아이디</th>
+                  <th class="text-center" width=20%>ID</th>
                   <td width="80%">
                     <input type=text name="userId" ref="userId" v-model="userId">
                   </td>
                 </tr>
                 <tr>
-                  <th class="text-center" width=20%>비밀번호</th>
+                  <th class="text-center" width=20%>PWD</th>
                   <td width="80%">
                     <input type=password name="userPwd" ref="userPwd" v-model="userPwd">
                   </td>

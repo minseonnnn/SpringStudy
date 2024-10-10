@@ -1,5 +1,6 @@
 package com.sist.web;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -90,6 +91,20 @@ public class CommentRestController {
   throws Exception
   {
 	  // 데이터 베이스 연동 
+	  CommentVO vo=cService.commentDeleteInfoData(cno);
+	  Map map=new HashMap();
+	  map.put("cno", cno);
+	  map.put("group_id", vo.getGroup_id());
+	  map.put("group_step", vo.getGroup_step());
+	  cService.commentDelete(map);
+	  cService.foodReplyDecrement(rno);
 	  return commonsListData(1, rno, type);
+  }
+  
+  @GetMapping(value = "comment/update_vue.do", produces = "text/plain;charset=UTF-8")
+  public String comment_update(CommentVO vo) throws Exception
+  {
+	  cService.commentUpdate(vo);
+	  return commonsListData(1, vo.getRno(), vo.getType());
   }
 }
