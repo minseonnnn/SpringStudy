@@ -68,53 +68,62 @@
               </tr>
               <tr>
                 <td colspan="5" class="text-center">
-                <button class="btn-sm btn-info">이전</button>
+                <button class="btn-sm btn-info" v-on:click="prev()">이전</button>
                 {{curpage}} page / {{totalpage}} pages
-                <button class="btn-sm btn-info">다음</button>
+                <button class="btn-sm btn-info" @click="next()">다음</button>
               </tr>
             </table>
             </div>
          </div>
     </section>  
    <script>
-    let listApp=Vue.createApp({
-    	// Model => 데이터의 상태(변경) 관리
-    	data(){
-    		return {
-    			board_list:[],
-    			curpage:1,
-    			totalpage:0,
-    			count:0,
-    			today:[]
-    		}
-    	},
-    	// VM => ViewModel => 데이터값을 변경
-    	// => window.onload
-    	mounted(){
-    		this.dataRecv()
-    	},
-    	// 사용자 요청에 따라 데이터를 변경
-    	methods:{
-    		// 1. 공통으로 적용되는 기능을 설정 => 목록 읽기
-    		dataRecv(){
-    			axios.get('../freeboard/list_vue.do',{
-    				params:{
-    					page:this.curpage
-    				}
-    			}).then(response=>{
-    				console.log(response.data)
-    				this.board_list=response.data.list
-    				this.curpage=response.data.curpage
-    				this.count=response.data.count
-    				this.totalpage=response.data.totalpage
-    				this.today=response.data.today
-    			}).catch(error=>{
-    				console.log(error.response)
-    			})
-    		}
-    		// 2. CRUD 
-    	}
-    }).mount('#listApp')
+   let listApp=Vue.createApp({
+	   // Model => 데이터의 상태(변경) 관리 
+	   // List => [] , VO => {} => React
+	   data(){
+		   return {
+			   board_list:[],
+			   curpage:1,
+			   totalpage:0,
+			   count:0,
+			   today:''
+		   }
+	   },
+	   // VM => ViewModel => 데이터값을 변경 
+	   // => window.onload 
+	   mounted(){
+		   this.dataRecv()
+	   },
+	   // 사용자 요청에 따라 데이터를 변경 
+	   methods:{
+		   prev(){
+			  this.curpage=this.curpage>1?this.curpage-1:this.curpage
+			  this.dataRecv()
+		   },
+		   next(){
+			   this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage
+			   this.dataRecv()
+		   },
+		   //1. 공통으로 적용되는 기능을 설정 => 목록 읽기
+		   dataRecv(){
+			   axios.get('../freeboard/list_vue.do',{
+				   params:{
+					   page:this.curpage
+				   }
+			   }).then(response=>{
+				   console.log(response.data)
+				   this.board_list=response.data.list
+				   this.curpage=response.data.curpage
+				   this.count=response.data.count
+				   this.totalpage=response.data.totalpage
+				   this.today=response.data.today
+			   }).catch(error=>{
+				   console.log(error.response)
+			   })
+		   }
+		   //2. CUD 
+	   }
+   }).mount('#listApp')
    </script>       
 </body>
 </html>

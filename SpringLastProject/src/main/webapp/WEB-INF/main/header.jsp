@@ -115,7 +115,7 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
                                         <a class="dropdown-item" href="../recipe/list.do">레시피목록</a>
-                                        <a class="dropdown-item" href="../recipe/chef.do">쉐프목록</a>
+                                        <a class="dropdown-item" href="../chef/list.do">쉐프목록</a>
                                        <sec:authorize access="hasRole('ROLE_USER')"> 
                                         <a class="dropdown-item" href="single.html">레시피만들기</a>
                                        </sec:authorize>
@@ -143,9 +143,9 @@
                                         <a class="dropdown-item" href="single.html">1:1채팅</a>
                                         <a class="dropdown-item" href="archive.html">묻고답하기</a>
                                         </sec:authorize>
-                                        <sec:authorize access="hasRole('ROLE_USER')">
-                                        <a class="dropdown-item" href="single.html">실시간 채팅</a>
-                                        </sec:authorize>
+                                        
+                                        <a class="dropdown-item" href="../chat/chat.do">실시간 채팅</a>
+                                        
                                     </div>
                                 </li>
                                 <sec:authorize access="hasRole('ROLE_USER')">
