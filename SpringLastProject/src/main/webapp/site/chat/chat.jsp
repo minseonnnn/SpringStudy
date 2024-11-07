@@ -14,22 +14,15 @@
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
-<script type="text/javascript">
+<script>
 let websocket
-let name
 function connection()
 {
      // 서버 연결
-     name=$('#name').val()
-     if(name.trim()==="")
-     {
-    	 $('#name').focus()
-    	 return
-     }
      websocket=new WebSocket("ws://localhost:8080/web/site/chat/chat-ws")
      websocket.onopen=onOpen
-     websocket.onclose=onclose
-     websocket.onmessage
+     websocket.onclose=onClose
+     websocket.onmessage=onMessage
 }
 // => CallBackBack 함수 처리
 // 연결이 된 경우
@@ -46,18 +39,59 @@ function onClose(event)
 function onMessage(event)
 {
 	// 서버에서 메세지를 받은 경우
+	let data=event.data
+	if(data.substring(0,4)==="msg:")
+	{
+		$('#recvMsg').append("<font color=red>"+data.substring(4)+"</font><br>")
+	}	
+	else if(data.substring(0,3)==="my:")
+	{
+		$('#recvMsg').append("<font color=blue>"+data.substring(3)+"</font><br>")
+	}	
+	else if(data.substring(0,4)==="you:")
+	{
+		$('#recvMsg').append(data.substring(4)+"<br>")
+	}	
+	// 스크롤 위치 저장 
+	let ch=$('#chatArea').height()
+	let m=$('#recvMsg').height()-ch
+	$('#chatArea').scrollTop(m)
 }
-function appendMessage(msg)
+function disConnection()
 {
+	websocket.close()
 	// div 출력 => 스크롤바 조절
 }
 function send()
 {
+	let msg=$('#sendMsg').val()
+	if(msg.trim()==="")
+	{
+		$('#sendMsg').focus()
+		return
+	}	
+	websocket.send(msg)
+	$('#sendMsg').val("")
+	$('#sendMsg').focus()
 	// 서버로 데이터 전송
 }
 //이벤트 처리
-$(functon(){
-	
+$(function(){
+	$('#inputBtn').click(function(){
+		connection()
+	})
+	$('#outputBtn').click(function(){
+		disConnection()
+	})
+	$('#sendBtn').click(function(){
+		send()
+	})
+	$('#sendMsg').keydown(function(key){
+		if(key.keyCode===13)
+		{
+			send()
+		}	
+	})
 })
 </script> 
 </head>
@@ -91,11 +125,8 @@ $(functon(){
                      <table class="table">
                        <tr>
                         <td>
-                          <input type="text" class="input-sm" id="name" size=20>
-                          <input type="button" class="btn-sm btn-info"
-                           value="입장">
-                           <input type="button" class="btn-sm btn-warning"
-                           value="퇴장">
+                          <input type="button" class="btn-sm btn-info" value="입장" id="inputBtn">
+                           <input type="button" class="btn-sm btn-warning" value="퇴장" id="outputBtn">
                         </td>
                        </tr>
                        <tr>
@@ -108,7 +139,7 @@ $(functon(){
                        <tr>
                          <td>
                            <input type=text id="sendMsg" class="input-sm" size=70>
-                           <input type=button value="전송" class="btn-sm btn-primary">
+                           <input type=button value="전송" class="btn-sm btn-primary" id="sendBtn">
                          </td>
                        </tr>
                      </table>
